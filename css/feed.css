@@ -3,6 +3,11 @@
 }
 
 body {
-	padding-top: 14px;
+	padding-top: 14pxg;
 	background-color: #1c1d1e;
+}
+
+p {
+	color: white;
+	text-align: center;
 }
