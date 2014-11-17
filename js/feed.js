@@ -12,7 +12,7 @@ $(document).ready(function() {
 			// Retrieve the object from storage
 			document.getElementById("debug").innerHTML = "Cached";
 			$("#animation").hide();
-			$("#instafeedCache").show();
+			$("#instafeed").html(localStorage.getItem("feed"));
 		}
 		else {
 			document.getElementById("debug").innerHTML = "Non-cached";
@@ -21,17 +21,15 @@ $(document).ready(function() {
 			    var loadedCnt = $("#instafeed img").length;
 				if (loadedCnt == 10) {
 					$("#animation").hide();
-					var feed = document.getElementById('instafeed');
-					var feedCache = document.getElementById('instafeedCache');
-					feedCache.innerHTML = feed.innerHTML;
-					
+					var feed = $("#instafeed").html();
+					localStorage.setItem("feed", feed);
 				}
 			});
 		}
 	} else {
 		document.getElementById("debug").innerHTML = "Selaimesi ei tue HTML5:n local storage -ominaisuutta.";
 	}
-	location.hash = "cache";
+	//location.hash = "cache";
 });
 
 function encode64(input) {
