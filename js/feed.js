@@ -12,29 +12,23 @@ $(document).ready(function() {
 		if (get("cache") == 1) {
 			// Retrieve the object from storage
 			document.getElementById("debug").innerHTML = "Cached";
+			$("#animation").hide();
+			$("#instafeedCache").show();
 		}
 		else {
 			document.getElementById("debug").innerHTML = "Non-cached";
 			feed.run();
-			// Put the object into storage
-/*
-			var images = []
-			var aHrefs = []
-			var imgSrcs = []
-			var aElements = document.links;
-			var imgElements = document.images;
-			var i;
-			for (i = 0; i < aElements.length; i++) {
-			    aHrefs[i] = aElements[i].href;
-			}
-			for (i = 0; i < imgElements.length; i++) {
-			    imgSrcs[i] = imgElements[i].src;
-			}
-			//localStorage.setItem('heroImg',hero);
-			var image = encode64(imgSrcs[0]);
-			document.getElementById("debug").innerHTML = document.images.length;
-			document.getElementById("testi").src = decode64(image);*/
+			$("#instafeed").bind("DOMSubtreeModified", function() {
+			    var loadedCnt = $("#instafeed img").length;
+				if (loadedCnt == 10) {
+					$("#animation").hide();
+					var feed = document.getElementById('instafeed');
+					var feedCache = document.getElementById('instafeedCache');
+					feedCache.innerHTML = feed.innerHTML;
+					$("#instafeedCache").hide();
 
+				}
+			});
 		}
 	} else {
 		document.getElementById("debug").innerHTML = "Selaimesi ei tue HTML5:n local storage -ominaisuutta.";
