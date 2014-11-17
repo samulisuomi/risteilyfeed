@@ -10,12 +10,12 @@ $(document).ready(function() {
 	if(typeof(Storage) !== "undefined") {
 		if (location.hash.replace('#', '') == "cache") {
 			// Retrieve the object from storage
-			document.getElementById("debug").innerHTML = "Cached";
+			//document.getElementById("debug").innerHTML = "Cached";
 			$("#animation").hide();
 			$("#instafeed").html(localStorage.getItem("feed"));
 		}
 		else {
-			document.getElementById("debug").innerHTML = "Non-cached";
+			//document.getElementById("debug").innerHTML = "Non-cached";
 			feed.run();
 			$("#instafeed").bind("DOMSubtreeModified", function() {
 			    var loadedCnt = $("#instafeed img").length;
