@@ -7,9 +7,9 @@ $(document).ready(function() {
         useHttp: true
     });
 	if(typeof(Storage) !== "undefined") {
-		$("#debug").css("color", "green");
+		document.getElementById("debug").innerHTML = "toimii";
 	} else {
-		$("#debug").css("color", "red");
+		document.getElementById("debug").innerHTML = "ei toimi";
 	}
 
     feed.run();
