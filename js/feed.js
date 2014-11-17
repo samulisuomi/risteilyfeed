@@ -24,7 +24,7 @@ $(document).ready(function() {
 					var feed = document.getElementById('instafeed');
 					var feedCache = document.getElementById('instafeedCache');
 					feedCache.innerHTML = feed.innerHTML;
-					$("#instafeedCache").hide();
+					
 				}
 			});
 		}
