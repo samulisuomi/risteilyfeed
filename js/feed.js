@@ -29,7 +29,7 @@ $(document).ready(function() {
 	} else {
 		document.getElementById("debug").innerHTML = "Selaimesi ei tue HTML5:n local storage -ominaisuutta.";
 	}
-	//location.hash = "cache";
+	location.hash = "cache";
 });
 
 function encode64(input) {
