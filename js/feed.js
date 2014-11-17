@@ -8,8 +8,7 @@ $(document).ready(function() {
         useHttp: true
     });
 	if(typeof(Storage) !== "undefined") {
-		// Ladataan storagesta:
-		if (get("cache") == 1) {
+		if (location.hash.replace('#', '') == "cache") {
 			// Retrieve the object from storage
 			document.getElementById("debug").innerHTML = "Cached";
 			$("#animation").hide();
@@ -26,19 +25,14 @@ $(document).ready(function() {
 					var feedCache = document.getElementById('instafeedCache');
 					feedCache.innerHTML = feed.innerHTML;
 					$("#instafeedCache").hide();
-
 				}
 			});
 		}
 	} else {
 		document.getElementById("debug").innerHTML = "Selaimesi ei tue HTML5:n local storage -ominaisuutta.";
 	}
+	location.hash = "cache";
 });
-
-function get(name){
-   if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
-      return decodeURIComponent(name[1]);
-}
 
 function encode64(input) {
 	var keyStr = "ABCDEFGHIJKLMNOP" +
