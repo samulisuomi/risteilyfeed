@@ -5,7 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Risteilyfeed - Jouluristeily.net</title>
     <!-- <link rel="stylesheet" href="css/foundation.css" /> -->
-    <link rel="stylesheet" href="css/feed.css" />
+    <style>
+      #instafeed {
+        text-align: center;
+        margin-top: -16px;
+      }
+
+      body {
+        background-color: #1c1d1e;
+      }
+
+      p {
+        color: white;
+        text-align: center;
+      }
+    </style>
     <!--<script src="js/vendor/modernizr.js"></script> -->
   </head>
   <body>
@@ -20,8 +34,39 @@
     <!-- <script src="js/foundation.min.js"></script> -->
     <script src="js/instafeed.min.js"></script>
     <script src="js/feed.js"></script>
-    <!--<script>
-      $(document).foundation();
-    </script>-->
+    <script>
+      $(document).ready(function() {
+        var feed = new Instafeed({
+              get: 'tagged',
+              tagName: 'jouluristeily',
+              limit: 10,
+              clientId: '02133fc6740f436ea05348c5483877d0',
+              useHttp: true
+          });
+        if(typeof(Storage) !== "undefined") {
+          if (location.hash.replace('#', '') == "cache") {
+            // Retrieve the object from storage
+            //document.getElementById("debug").innerHTML = "Cached";
+            $("#animation").hide();
+            $("#instafeed").html(localStorage.getItem("feed"));
+          }
+          else {
+            //document.getElementById("debug").innerHTML = "Non-cached";
+            feed.run();
+            $("#instafeed").bind("DOMSubtreeModified", function() {
+                var loadedCnt = $("#instafeed img").length;
+              if (loadedCnt == 10) {
+                $("#animation").hide();
+                var feed = $("#instafeed").html();
+                localStorage.setItem("feed", feed);
+              }
+            });
+          }
+        } else {
+          document.getElementById("debug").innerHTML = "Selaimesi ei tue HTML5:n local storage -ominaisuutta.";
+        }
+        location.hash = "cache";
+      });
+    </script>
   </body>
 </html>
