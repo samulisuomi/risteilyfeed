@@ -23,7 +23,7 @@
     <!--<script src="js/vendor/modernizr.js"></script> -->
   </head>
   <body>
-    <p><img src="img/download.gif" id="animation" width="41" height="42"/></p>
+    <p><img src="img/download.gif" id="animation" width="41" height="42" style="display: none;"/></p>
     <div id="instafeed">
     </div>
     
@@ -34,7 +34,7 @@
       $(document).ready(function() {
         loadContent();
       });
-      function loadContent() {
+      function loadContent() {   
         var feed = new Instafeed({
               get: 'tagged',
               tagName: 'jouluristeily',
@@ -43,6 +43,7 @@
               useHttp: true
           });
         if(typeof(Storage) !== "undefined") {
+          $("#animation").show();
           if (location.hash.replace('#', '') == "cache") {
             // Retrieve the object from storage
             //document.getElementById("debug").innerHTML = "Cached";
