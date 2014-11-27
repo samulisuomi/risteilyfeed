@@ -55,7 +55,7 @@
             feed.run();
             $("#instafeed").bind("DOMSubtreeModified", function() {
                 var loadedCnt = $("#instafeed img").length;
-              if (loadedCnt == 10) {
+              if (loadedCnt == 24) {
                 $("#animation").hide();
                 var feed = $("#instafeed").html();
                 localStorage.setItem("feed", feed);
